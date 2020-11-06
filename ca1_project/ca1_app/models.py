@@ -1,5 +1,5 @@
 from django.contrib.gis.db import models
-
+from django.contrib.auth import get_user_model
 # create your models here
 
 
@@ -24,3 +24,9 @@ class WorldBorder(models.Model):
     # Returns the string representation of the model.
     def __str__(self):
         return self.name
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
+    location = models.PointField()
+
