@@ -13,7 +13,7 @@
     <h3>{% trans "Locate Me" %}</h3>
     <p>This is an application to locate my current location</p>
     {% if user.is_authenticated %}
-        Hi {{ user.first_name }}!
+        Hi {{ user.username }}!
         <p><a href="{% url 'logout' %}">Log Out</a></p>
     {% else %}
         <p>You are not logged in</p>

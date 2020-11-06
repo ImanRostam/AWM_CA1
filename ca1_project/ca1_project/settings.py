@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'ca1_app.apps.Ca1AppConfig',
     'crispy_forms',
     'leaflet',
+    'accounts',
 ]
 
 
@@ -60,7 +61,8 @@ ROOT_URLCONF = 'ca1_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [str(BASE_DIR.joinpath('templates'))],        'APP_DIRS': True,
+        'DIRS': [str(BASE_DIR.joinpath('templates'))],
+        'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -136,6 +138,10 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Added for Login/ Logout
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
+
+# Added for Reset Password
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH = str(BASE_DIR.joinpath('sent_emails'))
 
 # For leaflet
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
