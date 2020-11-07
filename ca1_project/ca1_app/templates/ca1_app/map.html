@@ -1,5 +1,5 @@
 <!-- templates/ca1_app/map.html -->
-{% extends 'base.html' %}
+{% extends '../base.html' %}
 
 {% load leaflet_tags %}
 {% load static %}
@@ -7,19 +7,21 @@
 {% load crispy_forms_filters %}
 {% load i18n %}
 
-{% block title %}{% trans "Map Page" %}{% endblock %}
+{% block title %}{% trans "Map" %}{% endblock %}
 
 {% block extra_header %}
+    {% leaflet_css %}
+    {% leaflet_js %}
     <style>
         #map{
-            width: 100vw;
-            height: 100vh;
+            width: auto;
+            height: auto;
         }
     </style>
 {% endblock %}
 
 {% block body_content %}
-    {# <h3>{% trans "Map" %}</h3> #}
+    {#      <h3>{% trans "Map" %}</h3> #}
     {# <div style="width: 100%"> #}
     {% leaflet_map "map" callback="window.map_init_basic" %}
     {# </div> #}
@@ -49,12 +51,15 @@
         // The function updateLocation takes our map object, figures out our location and
         // passes the map object and location data to a further function (setMapToCurrentLocation)
         function updateLocation(map) {
+            console.log("In getCurrentLocation");
             navigator.geolocation.getCurrentPosition(
                 function (pos) {
+                    console.log("Got location");
                     setMapToCurrentLocation(map, pos);
                     update_db(pos);
                 },
                 function (err) {
+                    console.log("Location error: " + err.message);
                 },
                 {
                     enableHighAccuracy: true,
@@ -90,7 +95,7 @@
                 radius: pos.coords.accuracy
             }).addTo(map);
 
-            $(".toast-body").html("Found Location<br>Lat: " + myLatLon.lat + "Lan: " + myLatLon.lng);
+            $(".toast-body").html("Found Location<br>Lat: " + myLatLon.lat + " Lon: " + myLatLon.lng);
             $(".toast").toast('show');
         }
 
@@ -123,7 +128,6 @@
             var cookieValue = null;
             if(document.cookie && document.cookie !== ''){
                 var cookies = document.cookie.split(';');
-
                 for(var i = 0; i <cookies.length; i++){
                     var cookie = jQuery.trim(cookies[i]);
                     if(cookie.substring(0, name.length + 1) === (name + '=')){
@@ -132,6 +136,7 @@
                     }
                 }
             }
+            return cookieValue;
         }
     </script>
 {% endblock %}

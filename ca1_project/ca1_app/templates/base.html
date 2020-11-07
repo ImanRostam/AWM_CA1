@@ -17,8 +17,6 @@
                 integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
                 crossorigin="anonymous"></script>
 
-        <link rel="stylesheet" href="https://cdnjs.cloudfare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
               integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
               crossorigin="anonymous">
@@ -50,6 +48,7 @@
         <header id="header" style="background-color: dimgrey; color: white; position: fixed; top: 0; padding: 5px; font-size: x-large;
         width: 100%; left: 0; right: 0; z-index: 2000; vertical-align: center">
 
+            <div style="float: left; font-weight: bold; font-size: x-large; padding: 5px">Locate Me</div>
             <div style="float: right" class="dropdown">
                 <a class="btn btn-secondary" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-bars"></i>
@@ -57,7 +56,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{% url 'home' %}">{% trans "Home" %}</a>
                     {% if user.is_authenticated %}
-                        <a class="dropdown-item" href="{% url 'home' %}">{% trans "Map" %}</a>
+                        <a class="dropdown-item" href="{% url 'map' %}">{% trans "Map" %}</a>
                         <a class="dropdown-item" href="{% url 'password_reset' %}">{% trans "Reset Password" %}</a>
                         <a class="dropdown-item" href="{% url 'logout' %}">{% trans "Log Out" %}</a>
                     {% else %}
@@ -74,7 +73,7 @@
             </div>
         </header>
 
-        <div id="body_div" style="padding: 5px;">
+        <div id="body_div" style="padding: 1rem; width: 100%">
             {% block body_content %}{% endblock %}
         </div>
 
@@ -85,11 +84,12 @@
 
         <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">
             <div class="toast-header">
-                <strong class="mr-auto">AWM CA1</strong>
+                <strong class="mr-auto">Locate Me</strong>
                 <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                    <span aria-hidden="true">*</span>
+                    <span aria-hidden="true">&times</span>
                 </button>
             </div>
+            <div class="toast-body"></div>
         </div>
 
         <script>
