@@ -40,7 +40,7 @@ SECRET_KEY = env('SECRET_KEY')
 # False if not in os.environ
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [env.list("ALLOWED_HOSTS")]
 
 
 # Application definition
@@ -95,14 +95,7 @@ WSGI_APPLICATION = 'ca1_project.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-            'ENGINE': 'django.contrib.gis.db.backends.postgis',
-            'NAME': 'gis',
-            'HOST': 'localhost',
-            'PORT': '25432',
-            'USER': 'docker',
-            'PASSWORD': 'docker',
-        }
+    'default': env.db()
 }
 
 # Password validation
