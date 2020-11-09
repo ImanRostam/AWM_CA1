@@ -39,21 +39,21 @@
         {% leaflet_css %}
         {% leaflet_js %}
 
-        <link rel="stylesheet" type="text/css" href="{% static "ca1_app/style.css" %}">
+        <!-- <link rel="stylesheet" type="text/css" href="{% static "ca1_app/style.css" %}"> -->
 
         {% block extra_header %}{% endblock %}
     </head>
 
     <body>
-        <header id="header" style="background-color: dimgrey; color: white; position: fixed; top: 0; padding: 5px; font-size: x-large;
+        <header id="header" style="background-color: #112d4e; color: white; position: fixed; top: 0; padding: 5px; font-size: x-large;
         width: 100%; left: 0; right: 0; z-index: 2000; vertical-align: center">
 
-            <div style="float: left; font-weight: bold; font-size: x-large; padding: 5px">Locate Me</div>
+            <div style="float: left; font-weight: bold; font-size: x-large; padding: 5px; color: #dbe2ef">Locate Me</div>
             <div style="float: right" class="dropdown">
-                <a class="btn btn-secondary" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fa fa-bars"></i>
+                <a class="btn btn-secondary" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #dbe2ef">
+                    <i class="fa fa-bars" style="color: black"></i>
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #dbe2ef">
                     <a class="dropdown-item" href="{% url 'home' %}">{% trans "Home" %}</a>
                     {% if user.is_authenticated %}
                         <a class="dropdown-item" href="{% url 'map' %}">{% trans "Map" %}</a>
@@ -66,25 +66,25 @@
                 </div>
             </div>
 
-            <div style="float: right; padding: 0.5rem; font-size: initial">
+            <div style="float: right; padding: 0.5rem; font-size: initial; color: #dbe2ef">
                 {% if user.is_authenticated %}
                     {{ user.username }}
                 {% endif %}
             </div>
         </header>
 
-        <div id="body_div" style="padding: 1rem; width: 100%">
+        <div id="body_div" style="padding: 1rem; width: 100%; height: 100%; background-color: #f9f7f7">
             {% block body_content %}{% endblock %}
         </div>
 
-        <footer id="footer" style="background-color: dimgrey; color: white; position: fixed; bottom: 0; padding: 5px; font-size: medium;
+        <footer id="footer" style="background-color: #112d4e; color: white; position: fixed; bottom: 0; padding: 5px; font-size: medium;
         width: 100%; left: 0; right: 0; text-align: center; z-index: 2000;">
-            <h6 style="padding: 2px">&copy Iman Rostam &hearts; </h6>
+            <h6 style="padding: 2px; color: #dbe2ef">&copy Iman </h6>
         </footer>
 
         <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">
             <div class="toast-header">
-                <strong class="mr-auto">Locate Me</strong>
+                <strong class="mr-auto">{{ user.username }}</strong>
                 <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
                     <span aria-hidden="true">&times</span>
                 </button>
