@@ -40,7 +40,7 @@ SECRET_KEY = env('SECRET_KEY')
 # False if not in os.environ
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = [env.list("ALLOWED_HOSTS")]
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 
 
 # Application definition
@@ -163,3 +163,6 @@ LEAFLET_CONFIG = {
     'SCALE': None,
     'OPACITY': 0.5,
 }
+
+CSRF_COOKIE_SECURE = env("CSRF_COOKIE_SECURE")
+SESSION_COOKIE_SECURE = env("SESSION_COOKIE_SECURE")
