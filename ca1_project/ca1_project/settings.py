@@ -21,7 +21,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
-env = environ.Env()
+env = environ.Env(
+    DEBUG=(bool, False),
+    CSRF_COOKIE_SECURE=(bool, True),
+    SESSION_COOKIE_SECURE=(bool, True),
+)
 
 # reading .env file
 environ.Env.read_env()
@@ -137,7 +141,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Added for Whitenoise
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Added for Login/ Logout
 LOGIN_REDIRECT_URL = 'home'
